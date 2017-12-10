@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using SportsStore.Models;
 using Newtonsoft.Json;
+using System;
 
 namespace SportsStore
 {
@@ -38,6 +39,19 @@ namespace SportsStore
           opts.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
 
         });
+
+      services.AddDistributedSqlServerCache(options =>
+      {
+        options.ConnectionString = Configuration.GetConnectionString("Products");
+        options.SchemaName = "dbo";
+        options.TableName = "SessionData";
+      });
+
+      services.AddSession(options => {
+        options.Cookie.Name = "SportStore.Session";
+        options.Cookie.HttpOnly = false;
+        options.IdleTimeout = TimeSpan.FromHours(48);        
+      });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,10 +64,12 @@ namespace SportsStore
       app.UseDeveloperExceptionPage();
       app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
       {
-        HotModuleReplacement = true
+        HotModuleReplacement = true,
+        HotModuleReplacementEndpoint = "/dist/__webpack_hmr"
       });
 
       app.UseStaticFiles();
+      app.UseSession();
 
       app.UseMvc(routes =>
       {

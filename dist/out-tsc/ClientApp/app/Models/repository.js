@@ -142,6 +142,13 @@ var Repository = (function () {
             _this.getSuppliers();
         });
     };
+    Repository.prototype.storeSessionData = function (dataType, data) {
+        return this.sendRequest(http_1.RequestMethod.Post, "/api/session/" + dataType, data)
+            .subscribe(function (response) { });
+    };
+    Repository.prototype.getSessionData = function (dataType) {
+        return this.sendRequest(http_1.RequestMethod.Get, "/api/session/" + dataType);
+    };
     Repository.prototype.sendRequest = function (verb, url, data) {
         return this.http.request(new http_1.Request({
             method: verb,

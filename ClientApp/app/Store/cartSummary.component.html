@@ -2,7 +2,9 @@
   <small *ngIf="itemCount > 0; else empty">
     ({{ itemCount }}) item(s) {{totalPrice | currency:"USD":true}})
   </small>
-  <button class="btn btn-sm ml-1" [disabled]="itemCount == 0" routerLink="/cart"><i class="fade fa-shopping-cart"></i></button>
+  <button class="btn btn-sm ml-1" [disabled]="itemCount == 0" routerLink="/cart">
+    <i class="fa fa-shopping-cart"></i>
+  </button>
 </div>
 <ng-template #empty>
   <small class="text-muted">(cart is empty)</small>
