@@ -17,12 +17,17 @@
     <None Remove="ClientApp\app\models\cart.model.ts" />
     <None Remove="ClientApp\app\models\configClasses.repository.ts" />
     <None Remove="ClientApp\app\models\model.module.ts" />
+    <None Remove="ClientApp\app\Models\order.model.ts" />
     <None Remove="ClientApp\app\models\product.model.ts" />
     <None Remove="ClientApp\app\models\rating.model.ts" />
     <None Remove="ClientApp\app\models\repository.ts" />
     <None Remove="ClientApp\app\models\supplier.model.ts" />
     <None Remove="ClientApp\app\Store\cartDetail.component.ts" />
     <None Remove="ClientApp\app\store\categoryFilter.component.ts" />
+    <None Remove="ClientApp\app\Store\checkout\checkoutDetails.component.ts" />
+    <None Remove="ClientApp\app\Store\checkout\checkoutPayment.component.ts" />
+    <None Remove="ClientApp\app\Store\checkout\checkoutSummary.component.ts" />
+    <None Remove="ClientApp\app\Store\checkout\orderConfirmation.component.ts" />
     <None Remove="ClientApp\app\store\pagination.component.ts" />
     <None Remove="ClientApp\app\store\productList.component.ts" />
     <None Remove="ClientApp\app\store\productSelection.component.ts" />
@@ -56,6 +61,7 @@
     <TypeScriptCompile Include="ClientApp\app\models\cart.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\configClasses.repository.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\model.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Models\order.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\product.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\rating.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\repository.ts" />
@@ -63,6 +69,10 @@
     <TypeScriptCompile Include="ClientApp\app\Store\cartDetail.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\store\cartSummary.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\store\categoryFilter.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Store\checkout\checkoutDetails.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Store\checkout\checkoutPayment.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Store\checkout\checkoutSummary.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\Store\checkout\orderConfirmation.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\store\pagination.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\store\productList.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\store\productSelection.component.ts" />
