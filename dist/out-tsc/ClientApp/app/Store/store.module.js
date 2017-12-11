@@ -17,6 +17,10 @@ var productSelection_component_1 = require("./productSelection.component");
 var cartDetail_component_1 = require("./cartDetail.component");
 var router_1 = require("@angular/router");
 var forms_1 = require("@angular/forms");
+var checkoutDetails_component_1 = require("./checkout/checkoutDetails.component");
+var checkoutPayment_component_1 = require("./checkout/checkoutPayment.component");
+var checkoutSummary_component_1 = require("./checkout/checkoutSummary.component");
+var orderConfirmation_component_1 = require("./checkout/orderConfirmation.component");
 var StoreModule = (function () {
     function StoreModule() {
     }
@@ -31,7 +35,11 @@ StoreModule = __decorate([
             productList_component_1.ProductListComponent,
             ratings_component_1.RatingsComponent,
             productSelection_component_1.ProductSelectionComponent,
-            cartDetail_component_1.CartDetailComponent
+            cartDetail_component_1.CartDetailComponent,
+            checkoutDetails_component_1.CheckoutDetailsComponent,
+            checkoutPayment_component_1.CheckoutPaymentComponent,
+            checkoutSummary_component_1.CheckoutSummaryComponent,
+            orderConfirmation_component_1.OrderConfirmationComponent
         ],
         imports: [
             platform_browser_1.BrowserModule,

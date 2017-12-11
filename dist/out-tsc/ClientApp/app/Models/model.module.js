@@ -9,6 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var repository_1 = require("./repository");
 var cart_model_1 = require("./cart.model");
+var order_model_1 = require("./order.model");
 var ModelModule = (function () {
     function ModelModule() {
     }
@@ -16,7 +17,7 @@ var ModelModule = (function () {
 }());
 ModelModule = __decorate([
     core_1.NgModule({
-        providers: [repository_1.Repository, cart_model_1.Cart]
+        providers: [repository_1.Repository, cart_model_1.Cart, order_model_1.Order]
     })
 ], ModelModule);
 exports.ModelModule = ModelModule;

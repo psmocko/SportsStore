@@ -44,13 +44,13 @@ var Cart = (function () {
             if (selection) {
                 selection.quantity = quantity;
             }
-            else {
-                var index = this.selections.findIndex(function (ps) { return ps.productId == productId; });
-                if (index != -1) {
-                    this.selections.splice(index, 1);
-                }
-                this.update();
+        }
+        else {
+            var index = this.selections.findIndex(function (ps) { return ps.productId == productId; });
+            if (index != -1) {
+                this.selections.splice(index, 1);
             }
+            this.update();
         }
     };
     Cart.prototype.clear = function () {

@@ -15,11 +15,13 @@ require("rxjs/add/operator/map");
 var configClasses_repository_1 = require("./configClasses.repository");
 var productsUrl = '/api/products';
 var suppliersUrl = '/api/suppliers';
+var ordersUrl = '/api/orders';
 var Repository = (function () {
     function Repository(http) {
         this.http = http;
         this.suppliers = [];
         this.categories = [];
+        this.orders = [];
         this.filterObject = new configClasses_repository_1.Filter();
         this.paginationObject = new configClasses_repository_1.Pagination();
         // this.filterObject.category = "soccer";
@@ -141,6 +143,28 @@ var Repository = (function () {
             _this.getProducts;
             _this.getSuppliers();
         });
+    };
+    Repository.prototype.getOrders = function () {
+        var _this = this;
+        this.sendRequest(http_1.RequestMethod.Get, ordersUrl)
+            .subscribe(function (data) { return _this.orders = data; });
+    };
+    Repository.prototype.createOrder = function (order) {
+        this.sendRequest(http_1.RequestMethod.Post, ordersUrl, {
+            name: order.name,
+            address: order.address,
+            payment: order.payment,
+            products: order.products
+        }).subscribe(function (data) {
+            order.orderConfirmation = data;
+            order.cart.clear();
+            order.clear();
+        });
+    };
+    Repository.prototype.shipOrder = function (order) {
+        var _this = this;
+        this.sendRequest(http_1.RequestMethod.Post, ordersUrl + "/" + order.orderId)
+            .subscribe(function (r) { return _this.getOrders(); });
     };
     Repository.prototype.storeSessionData = function (dataType, data) {
         return this.sendRequest(http_1.RequestMethod.Post, "/api/session/" + dataType, data)
