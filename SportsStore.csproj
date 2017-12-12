@@ -13,6 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\app\admin\admin.component.ts" />
+    <None Remove="ClientApp\app\admin\overview.component.ts" />
+    <None Remove="ClientApp\app\admin\productAdmin.component.ts" />
     <None Remove="ClientApp\app\app.routing.ts" />
     <None Remove="ClientApp\app\models\cart.model.ts" />
     <None Remove="ClientApp\app\models\configClasses.repository.ts" />
@@ -57,6 +60,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\admin\admin.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\admin\overview.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\admin\productAdmin.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\app.routing.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\cart.model.ts" />
     <TypeScriptCompile Include="ClientApp\app\models\configClasses.repository.ts" />

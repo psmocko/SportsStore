@@ -11,6 +11,7 @@ var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/http");
 var model_module_1 = require("./models/model.module");
+var admin_module_1 = require("./admin/admin.module");
 //import { ProductTableComponent } from './structure/productTable.component';
 //import { CategoryFilterComponent } from './structure/categoryFilter.component';
 //import { ProductDetailComponent } from './structure/productDetail.component';
@@ -33,7 +34,8 @@ AppModule = __decorate([
             http_1.HttpModule,
             model_module_1.ModelModule,
             app_routing_1.RoutingConfig,
-            store_module_1.StoreModule
+            store_module_1.StoreModule,
+            admin_module_1.AdminModule
         ],
         providers: [],
         bootstrap: [app_component_1.AppComponent]

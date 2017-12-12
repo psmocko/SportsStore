@@ -7,7 +7,19 @@ var checkoutDetails_component_1 = require("./store/checkout/checkoutDetails.comp
 var checkoutPayment_component_1 = require("./store/checkout/checkoutPayment.component");
 var checkoutSummary_component_1 = require("./store/checkout/checkoutSummary.component");
 var orderConfirmation_component_1 = require("./store/checkout/orderConfirmation.component");
+var admin_component_1 = require("./admin/admin.component");
+var overview_component_1 = require("./admin/overview.component");
+var productAdmin_component_1 = require("./admin/productAdmin.component");
+var order_admin_component_1 = require("./admin/order-admin.component");
 var routes = [
+    {
+        path: 'admin', component: admin_component_1.AdminComponent, children: [
+            { path: 'products', component: productAdmin_component_1.ProductAdminComponent },
+            { path: 'orders', component: order_admin_component_1.OrderAdminComponent },
+            { path: 'overview', component: overview_component_1.OverviewComponent },
+            { path: '', component: overview_component_1.OverviewComponent }
+        ]
+    },
     { path: 'checkout/step1', component: checkoutDetails_component_1.CheckoutDetailsComponent },
     { path: 'checkout/step2', component: checkoutPayment_component_1.CheckoutPaymentComponent },
     { path: 'checkout/step3', component: checkoutSummary_component_1.CheckoutSummaryComponent },
