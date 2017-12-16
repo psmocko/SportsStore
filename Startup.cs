@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.SpaServices.Webpack;
@@ -8,6 +9,9 @@ using Microsoft.EntityFrameworkCore;
 using SportsStore.Models;
 using Newtonsoft.Json;
 using System;
+using Microsoft.AspNetCore.Identity;
+using System.IO;
+using Microsoft.EntityFrameworkCore.Design;
 
 namespace SportsStore
 {
@@ -31,6 +35,9 @@ namespace SportsStore
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
+      services.AddDbContext<IdentityDataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Identity")));
+      services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<IdentityDataContext>().AddDefaultTokenProviders();
+
       services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Products")));
       services.AddMvc()
         .AddJsonOptions(opts =>
@@ -39,6 +46,8 @@ namespace SportsStore
           opts.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
 
         });
+
+      services.AddScoped<IdentitySeedData>();
 
       services.AddDistributedSqlServerCache(options =>
       {
@@ -55,7 +64,7 @@ namespace SportsStore
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+    public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IdentitySeedData seedData)
     {
 
       loggerFactory.AddConsole(Configuration.GetSection("Logging"));
@@ -70,7 +79,7 @@ namespace SportsStore
 
       app.UseStaticFiles();
       app.UseSession();
-
+      app.UseAuthentication();
       app.UseMvc(routes =>
       {
         routes.MapRoute(
@@ -80,7 +89,23 @@ namespace SportsStore
           routes.MapSpaFallbackRoute("angular-fallback", new { controller = "Home", action = "Index" });
       });
 
-      // SeedData.SeedDatabase(app.ApplicationServices.GetRequiredService<DataContext>());
+      //SeedData.SeedDatabase(app.ApplicationServices.GetRequiredService<DataContext>());
+      seedData.SeedDatabase().Wait();
+    }
+  }
+
+  public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<IdentityDataContext>
+  {
+    public IdentityDataContext CreateDbContext(string[] args)
+    {
+      IConfigurationRoot configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .Build();
+      var builder = new DbContextOptionsBuilder<IdentityDataContext>();
+      var connectionString = configuration.GetConnectionString("Identity");
+      builder.UseSqlServer(connectionString);
+      return new IdentityDataContext(builder.Options);
     }
   }
 }

@@ -21,35 +21,35 @@ var checkoutDetails_component_1 = require("./checkout/checkoutDetails.component"
 var checkoutPayment_component_1 = require("./checkout/checkoutPayment.component");
 var checkoutSummary_component_1 = require("./checkout/checkoutSummary.component");
 var orderConfirmation_component_1 = require("./checkout/orderConfirmation.component");
-var StoreModule = (function () {
+var StoreModule = /** @class */ (function () {
     function StoreModule() {
     }
+    StoreModule = __decorate([
+        core_1.NgModule({
+            declarations: [
+                cartSummary_component_1.CartSummaryComponent,
+                categoryFilter_component_1.CategoryFilterComponent,
+                pagination_component_1.PaginationComponent,
+                productList_component_1.ProductListComponent,
+                ratings_component_1.RatingsComponent,
+                productSelection_component_1.ProductSelectionComponent,
+                cartDetail_component_1.CartDetailComponent,
+                checkoutDetails_component_1.CheckoutDetailsComponent,
+                checkoutPayment_component_1.CheckoutPaymentComponent,
+                checkoutSummary_component_1.CheckoutSummaryComponent,
+                orderConfirmation_component_1.OrderConfirmationComponent
+            ],
+            imports: [
+                platform_browser_1.BrowserModule,
+                router_1.RouterModule,
+                forms_1.FormsModule
+            ],
+            exports: [
+                productSelection_component_1.ProductSelectionComponent
+            ]
+        })
+    ], StoreModule);
     return StoreModule;
 }());
-StoreModule = __decorate([
-    core_1.NgModule({
-        declarations: [
-            cartSummary_component_1.CartSummaryComponent,
-            categoryFilter_component_1.CategoryFilterComponent,
-            pagination_component_1.PaginationComponent,
-            productList_component_1.ProductListComponent,
-            ratings_component_1.RatingsComponent,
-            productSelection_component_1.ProductSelectionComponent,
-            cartDetail_component_1.CartDetailComponent,
-            checkoutDetails_component_1.CheckoutDetailsComponent,
-            checkoutPayment_component_1.CheckoutPaymentComponent,
-            checkoutSummary_component_1.CheckoutSummaryComponent,
-            orderConfirmation_component_1.OrderConfirmationComponent
-        ],
-        imports: [
-            platform_browser_1.BrowserModule,
-            router_1.RouterModule,
-            forms_1.FormsModule
-        ],
-        exports: [
-            productSelection_component_1.ProductSelectionComponent
-        ]
-    })
-], StoreModule);
 exports.StoreModule = StoreModule;
 //# sourceMappingURL=store.module.js.map

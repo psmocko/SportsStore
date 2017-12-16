@@ -18,7 +18,7 @@ var error_handler_service_1 = require("../error-handler.service");
 var productsUrl = '/api/products';
 var suppliersUrl = '/api/suppliers';
 var ordersUrl = '/api/orders';
-var Repository = (function () {
+var Repository = /** @class */ (function () {
     function Repository(http) {
         this.http = http;
         this.suppliers = [];
@@ -200,11 +200,11 @@ var Repository = (function () {
             throw new Error("Network Error");
         });
     };
+    Repository = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [http_1.Http])
+    ], Repository);
     return Repository;
 }());
-Repository = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
-], Repository);
 exports.Repository = Repository;
 //# sourceMappingURL=repository.js.map

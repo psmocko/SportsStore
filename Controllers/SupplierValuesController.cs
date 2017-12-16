@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SportsStore.Models;
 using SportsStore.Models.BindingTargets;
@@ -11,6 +9,7 @@ namespace SportsStore.Controllers
 {
   [Produces("application/json")]
   [Route("api/suppliers")]
+  [Authorize(Roles="Administrator")]
   public class SupplierValuesController : Controller
   {
     private readonly DataContext _context;

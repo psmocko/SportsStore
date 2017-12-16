@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var repository_1 = require("../models/repository");
-var ProductDetailComponent = (function () {
+var ProductDetailComponent = /** @class */ (function () {
     function ProductDetailComponent(repo, router, activeRoute) {
         this.repo = repo;
         this.router = router;
@@ -32,14 +32,14 @@ var ProductDetailComponent = (function () {
         enumerable: true,
         configurable: true
     });
+    ProductDetailComponent = __decorate([
+        core_1.Component({
+            selector: 'product-detail',
+            templateUrl: 'productDetail.component.html'
+        }),
+        __metadata("design:paramtypes", [repository_1.Repository, router_1.Router, router_1.ActivatedRoute])
+    ], ProductDetailComponent);
     return ProductDetailComponent;
 }());
-ProductDetailComponent = __decorate([
-    core_1.Component({
-        selector: 'product-detail',
-        templateUrl: 'productDetail.component.html'
-    }),
-    __metadata("design:paramtypes", [repository_1.Repository, router_1.Router, router_1.ActivatedRoute])
-], ProductDetailComponent);
 exports.ProductDetailComponent = ProductDetailComponent;
 //# sourceMappingURL=productDetail.component.js.map

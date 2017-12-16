@@ -7,16 +7,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var ProductSelectionComponent = (function () {
+var ProductSelectionComponent = /** @class */ (function () {
     function ProductSelectionComponent() {
     }
+    ProductSelectionComponent = __decorate([
+        core_1.Component({
+            selector: 'store-products',
+            templateUrl: 'productSelection.component.html'
+        })
+    ], ProductSelectionComponent);
     return ProductSelectionComponent;
 }());
-ProductSelectionComponent = __decorate([
-    core_1.Component({
-        selector: 'store-products',
-        templateUrl: 'productSelection.component.html'
-    })
-], ProductSelectionComponent);
 exports.ProductSelectionComponent = ProductSelectionComponent;
 //# sourceMappingURL=productSelection.component.js.map

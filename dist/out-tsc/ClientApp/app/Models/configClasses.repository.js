@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var Filter = (function () {
+var Filter = /** @class */ (function () {
     function Filter() {
         this.related = false;
     }
@@ -11,7 +11,7 @@ var Filter = (function () {
     return Filter;
 }());
 exports.Filter = Filter;
-var Pagination = (function () {
+var Pagination = /** @class */ (function () {
     function Pagination() {
         this.productsPerPage = 4;
         this.currentPage = 1;

@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var repository_1 = require("../models/repository");
 var cart_model_1 = require("../models/cart.model");
-var ProductListComponent = (function () {
+var ProductListComponent = /** @class */ (function () {
     function ProductListComponent(repo, cart) {
         this.repo = repo;
         this.cart = cart;
@@ -31,14 +31,14 @@ var ProductListComponent = (function () {
     ProductListComponent.prototype.addToCart = function (product) {
         this.cart.addProduct(product);
     };
+    ProductListComponent = __decorate([
+        core_1.Component({
+            selector: 'store-product-list',
+            templateUrl: 'productList.component.html'
+        }),
+        __metadata("design:paramtypes", [repository_1.Repository, cart_model_1.Cart])
+    ], ProductListComponent);
     return ProductListComponent;
 }());
-ProductListComponent = __decorate([
-    core_1.Component({
-        selector: 'store-product-list',
-        templateUrl: 'productList.component.html'
-    }),
-    __metadata("design:paramtypes", [repository_1.Repository, cart_model_1.Cart])
-], ProductListComponent);
 exports.ProductListComponent = ProductListComponent;
 //# sourceMappingURL=productList.component.js.map

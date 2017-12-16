@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var repository_1 = require("./repository");
-var Cart = (function () {
+var Cart = /** @class */ (function () {
     function Cart(repo) {
         var _this = this;
         this.repo = repo;
@@ -69,14 +69,14 @@ var Cart = (function () {
             }));
         }
     };
+    Cart = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [repository_1.Repository])
+    ], Cart);
     return Cart;
 }());
-Cart = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [repository_1.Repository])
-], Cart);
 exports.Cart = Cart;
-var ProductSelection = (function () {
+var ProductSelection = /** @class */ (function () {
     function ProductSelection(cart, productId, name, price, quantityValue) {
         this.cart = cart;
         this.productId = productId;

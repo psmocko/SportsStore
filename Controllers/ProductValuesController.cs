@@ -1,20 +1,18 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SportsStore.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Net.Http;
 using SportsStore.Models.BindingTargets;
-using System.Net;
 using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SportsStore.Controllers
 {
   [Produces("application/json")]
   [Route("api/products")]
+  [Authorize(Roles = "Administrator")]
   public class ProductValuesController : Controller
   {
     private readonly DataContext _context;
@@ -25,13 +23,18 @@ namespace SportsStore.Controllers
     }
 
     [HttpGet("{id}")]
+    [AllowAnonymous]
     public async Task<Product> GetProduct(long id)
     {
-      System.Threading.Thread.Sleep(5000);
-      var result = await _context.Products
-        .Include(p => p.Supplier).ThenInclude(s => s.Products)
-        .Include(p => p.Ratings)
-        .FirstOrDefaultAsync(p => p.ProductId == id);
+      IQueryable<Product> query = _context.Products
+        .Include(p => p.Ratings);
+
+      if (HttpContext.User.IsInRole("Administrator")) {
+        query = query.Include(p => p.Supplier)
+          .ThenInclude(s => s.Products);
+      }
+
+      var result = query.First(p => p.ProductId == id); 
 
       if (result != null)
       {
@@ -61,6 +64,7 @@ namespace SportsStore.Controllers
     }
 
     [HttpGet]
+    [AllowAnonymous]
     public IActionResult GetProducts(string category, string search, bool related = false, bool metadata = false)
     {
       IQueryable<Product> query = _context.Products;
@@ -78,7 +82,7 @@ namespace SportsStore.Controllers
           p.Description.ToLower().Contains(searchLower));
       }
 
-      if (related)
+      if (related && HttpContext.User.IsInRole("Administrator"))
       {
         query = query.Include(p => p.Supplier).Include(p => p.Ratings);
         var data = query.ToList();

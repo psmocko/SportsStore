@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var product_model_1 = require("../models/product.model");
-var RatingsComponent = (function () {
+var RatingsComponent = /** @class */ (function () {
     function RatingsComponent() {
     }
     Object.defineProperty(RatingsComponent.prototype, "stars", {
@@ -30,17 +30,17 @@ var RatingsComponent = (function () {
         enumerable: true,
         configurable: true
     });
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", product_model_1.Product)
+    ], RatingsComponent.prototype, "product", void 0);
+    RatingsComponent = __decorate([
+        core_1.Component({
+            selector: 'store-ratings',
+            templateUrl: 'ratings.component.html'
+        })
+    ], RatingsComponent);
     return RatingsComponent;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", product_model_1.Product)
-], RatingsComponent.prototype, "product", void 0);
-RatingsComponent = __decorate([
-    core_1.Component({
-        selector: 'store-ratings',
-        templateUrl: 'ratings.component.html'
-    })
-], RatingsComponent);
 exports.RatingsComponent = RatingsComponent;
 //# sourceMappingURL=ratings.component.js.map

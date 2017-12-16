@@ -11,17 +11,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var cart_model_1 = require("../models/cart.model");
-var CartDetailComponent = (function () {
+var CartDetailComponent = /** @class */ (function () {
     function CartDetailComponent(cart) {
         this.cart = cart;
     }
+    CartDetailComponent = __decorate([
+        core_1.Component({
+            templateUrl: 'cartDetail.component.html'
+        }),
+        __metadata("design:paramtypes", [cart_model_1.Cart])
+    ], CartDetailComponent);
     return CartDetailComponent;
 }());
-CartDetailComponent = __decorate([
-    core_1.Component({
-        templateUrl: 'cartDetail.component.html'
-    }),
-    __metadata("design:paramtypes", [cart_model_1.Cart])
-], CartDetailComponent);
 exports.CartDetailComponent = CartDetailComponent;
 //# sourceMappingURL=cartDetail.component.js.map

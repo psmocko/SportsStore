@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var repository_1 = require("../models/repository");
-var PaginationComponent = (function () {
+var PaginationComponent = /** @class */ (function () {
     function PaginationComponent(repo) {
         this.repo = repo;
     }
@@ -38,14 +38,14 @@ var PaginationComponent = (function () {
     PaginationComponent.prototype.changePage = function (newPage) {
         this.repo.pagination.currentPage = newPage;
     };
+    PaginationComponent = __decorate([
+        core_1.Component({
+            selector: 'store-pagination',
+            templateUrl: 'pagination.component.html'
+        }),
+        __metadata("design:paramtypes", [repository_1.Repository])
+    ], PaginationComponent);
     return PaginationComponent;
 }());
-PaginationComponent = __decorate([
-    core_1.Component({
-        selector: 'store-pagination',
-        templateUrl: 'pagination.component.html'
-    }),
-    __metadata("design:paramtypes", [repository_1.Repository])
-], PaginationComponent);
 exports.PaginationComponent = PaginationComponent;
 //# sourceMappingURL=pagination.component.js.map

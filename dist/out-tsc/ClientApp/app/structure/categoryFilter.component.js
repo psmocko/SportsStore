@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var repository_1 = require("../models/repository");
-var CategoryFilterComponent = (function () {
+var CategoryFilterComponent = /** @class */ (function () {
     function CategoryFilterComponent(repo) {
         this.repo = repo;
     }
@@ -19,14 +19,14 @@ var CategoryFilterComponent = (function () {
         this.repo.filter.category = category;
         this.repo.getProducts();
     };
+    CategoryFilterComponent = __decorate([
+        core_1.Component({
+            selector: 'category-filter',
+            templateUrl: './categoryFilter.component.html'
+        }),
+        __metadata("design:paramtypes", [repository_1.Repository])
+    ], CategoryFilterComponent);
     return CategoryFilterComponent;
 }());
-CategoryFilterComponent = __decorate([
-    core_1.Component({
-        selector: 'category-filter',
-        templateUrl: './categoryFilter.component.html'
-    }),
-    __metadata("design:paramtypes", [repository_1.Repository])
-], CategoryFilterComponent);
 exports.CategoryFilterComponent = CategoryFilterComponent;
 //# sourceMappingURL=categoryFilter.component.js.map

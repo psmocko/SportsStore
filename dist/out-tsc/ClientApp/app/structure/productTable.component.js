@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var repository_1 = require("../models/repository");
-var ProductTableComponent = (function () {
+var ProductTableComponent = /** @class */ (function () {
     function ProductTableComponent(repo, router) {
         this.repo = repo;
         this.router = router;
@@ -28,14 +28,14 @@ var ProductTableComponent = (function () {
         this.repo.getProduct(id);
         this.router.navigateByUrl('/detail');
     };
+    ProductTableComponent = __decorate([
+        core_1.Component({
+            selector: 'product-table',
+            templateUrl: './productTable.component.html'
+        }),
+        __metadata("design:paramtypes", [repository_1.Repository, router_1.Router])
+    ], ProductTableComponent);
     return ProductTableComponent;
 }());
-ProductTableComponent = __decorate([
-    core_1.Component({
-        selector: 'product-table',
-        templateUrl: './productTable.component.html'
-    }),
-    __metadata("design:paramtypes", [repository_1.Repository, router_1.Router])
-], ProductTableComponent);
 exports.ProductTableComponent = ProductTableComponent;
 //# sourceMappingURL=productTable.component.js.map

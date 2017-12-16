@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var cart_model_1 = require("../models/cart.model");
-var CartSummaryComponent = (function () {
+var CartSummaryComponent = /** @class */ (function () {
     function CartSummaryComponent(cart) {
         this.cart = cart;
     }
@@ -29,14 +29,14 @@ var CartSummaryComponent = (function () {
         enumerable: true,
         configurable: true
     });
+    CartSummaryComponent = __decorate([
+        core_1.Component({
+            selector: 'store-cartsummary',
+            templateUrl: 'cartSummary.component.html'
+        }),
+        __metadata("design:paramtypes", [cart_model_1.Cart])
+    ], CartSummaryComponent);
     return CartSummaryComponent;
 }());
-CartSummaryComponent = __decorate([
-    core_1.Component({
-        selector: 'store-cartsummary',
-        templateUrl: 'cartSummary.component.html'
-    }),
-    __metadata("design:paramtypes", [cart_model_1.Cart])
-], CartSummaryComponent);
 exports.CartSummaryComponent = CartSummaryComponent;
 //# sourceMappingURL=cartSummary.component.js.map

@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SportsStore.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SportsStore.Controllers
 {
   [Produces("application/json")]
   [Route("api/orders")]
+  [Authorize(Roles = "Administrator")]
   public class OrderValuesController : Controller
   {
     private DataContext _context;
@@ -37,6 +39,7 @@ namespace SportsStore.Controllers
     }
 
     [HttpPost]
+    [AllowAnonymous]
     public async Task<IActionResult> CreateOrder([FromBody] Order order) {
       if (ModelState.IsValid) {
         order.OrderId = 0;

@@ -14,16 +14,13 @@ var repository_1 = require("./models/repository");
 var product_model_1 = require("./models/product.model");
 var supplier_model_1 = require("./models/supplier.model");
 var error_handler_service_1 = require("./error-handler.service");
-var AppComponent = (function () {
+var AppComponent = /** @class */ (function () {
     function AppComponent(repo, errorHandler) {
         var _this = this;
         this.repo = repo;
         this.title = 'Angular & ASP.NET Core MVC';
         errorHandler.errors.subscribe(function (error) {
-            if (!_this.lastError) {
-                _this.lastError = [];
-            }
-            error.forEach(function (e) { return _this.lastError.push(e); });
+            _this.lastError = error;
         });
     }
     Object.defineProperty(AppComponent.prototype, "error", {
@@ -80,15 +77,15 @@ var AppComponent = (function () {
     AppComponent.prototype.deleteSupplier = function () {
         this.repo.deleteSupplier(2);
     };
+    AppComponent = __decorate([
+        core_1.Component({
+            selector: 'app-root',
+            templateUrl: './app.component.html',
+            styleUrls: ['./app.component.css']
+        }),
+        __metadata("design:paramtypes", [repository_1.Repository, error_handler_service_1.ErrorHandlerService])
+    ], AppComponent);
     return AppComponent;
 }());
-AppComponent = __decorate([
-    core_1.Component({
-        selector: 'app-root',
-        templateUrl: './app.component.html',
-        styleUrls: ['./app.component.css']
-    }),
-    __metadata("design:paramtypes", [repository_1.Repository, error_handler_service_1.ErrorHandlerService])
-], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map
