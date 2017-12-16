@@ -1,24 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { ModelModule } from './models/model.module';
 import { AdminModule } from './admin/admin.module';
-//import { ProductTableComponent } from './structure/productTable.component';
-//import { CategoryFilterComponent } from './structure/categoryFilter.component';
-//import { ProductDetailComponent } from './structure/productDetail.component';
 import { RoutingConfig } from './app.routing';
 import { StoreModule } from './store/store.module';
 import { ProductSelectionComponent } from './store/productSelection.component';
+import { ErrorHandlerService } from './error-handler.service';
 
 import { AppComponent } from './app.component';
 
+const eHandler = new ErrorHandlerService();
+
+export function handler() {
+  return eHandler;
+}
+
 @NgModule({
   declarations: [
-    AppComponent,
-    //ProductTableComponent,
-    //CategoryFilterComponent,
-    //ProductDetailComponent
+    AppComponent,  
   ],
   imports: [
     BrowserModule,
@@ -29,7 +30,10 @@ import { AppComponent } from './app.component';
     StoreModule,
     AdminModule
   ],
-  providers: [],
+  providers: [
+    { provide: ErrorHandlerService, useFactory: handler },
+    { provide: ErrorHandler, useFactory: handler }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

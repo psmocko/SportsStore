@@ -12,12 +12,15 @@ var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/http");
 var model_module_1 = require("./models/model.module");
 var admin_module_1 = require("./admin/admin.module");
-//import { ProductTableComponent } from './structure/productTable.component';
-//import { CategoryFilterComponent } from './structure/categoryFilter.component';
-//import { ProductDetailComponent } from './structure/productDetail.component';
 var app_routing_1 = require("./app.routing");
 var store_module_1 = require("./store/store.module");
+var error_handler_service_1 = require("./error-handler.service");
 var app_component_1 = require("./app.component");
+var eHandler = new error_handler_service_1.ErrorHandlerService();
+function handler() {
+    return eHandler;
+}
+exports.handler = handler;
 var AppModule = (function () {
     function AppModule() {
     }
@@ -37,7 +40,10 @@ AppModule = __decorate([
             store_module_1.StoreModule,
             admin_module_1.AdminModule
         ],
-        providers: [],
+        providers: [
+            { provide: error_handler_service_1.ErrorHandlerService, useFactory: handler },
+            { provide: core_1.ErrorHandler, useFactory: handler }
+        ],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

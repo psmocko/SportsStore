@@ -3,9 +3,11 @@ import { Product } from './product.model';
 import { Http, RequestMethod, Request, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 import { Filter, Pagination } from './configClasses.repository';
 import { Supplier } from './supplier.model';
 import { Order } from './order.model';
+import { ErrorHandlerService, ValidationError } from '../error-handler.service';
 
 const productsUrl = '/api/products';
 const suppliersUrl = '/api/suppliers';
@@ -184,9 +186,24 @@ export class Repository {
       method: verb,
       url: url,
       body: data
-    })).map(response => {
-      return response.headers.get("Content-Length") !== "0" ? response.json() : null;
-    });
+    }))
+      .map(response => {
+        return response.headers.get("Content-Length") !== "0" ? response.json() : null;
+      })
+      .catch((errorResponse: Response) => {
+        if (errorResponse.status === 400) {
+          let jsonData: string;
+          try {
+            jsonData = errorResponse.json();
+          } catch (e) {
+            throw new Error("Network Error");
+          }
+          let messages = Object.getOwnPropertyNames(jsonData)
+            .map(p => jsonData[p]);
+          throw new ValidationError(messages);
+        }
+        throw new Error("Network Error");
+      });
   }
   
 }

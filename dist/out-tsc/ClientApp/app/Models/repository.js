@@ -12,7 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 require("rxjs/add/operator/map");
+require("rxjs/add/operator/catch");
 var configClasses_repository_1 = require("./configClasses.repository");
+var error_handler_service_1 = require("../error-handler.service");
 var productsUrl = '/api/products';
 var suppliersUrl = '/api/suppliers';
 var ordersUrl = '/api/orders';
@@ -178,8 +180,24 @@ var Repository = (function () {
             method: verb,
             url: url,
             body: data
-        })).map(function (response) {
+        }))
+            .map(function (response) {
             return response.headers.get("Content-Length") !== "0" ? response.json() : null;
+        })
+            .catch(function (errorResponse) {
+            if (errorResponse.status === 400) {
+                var jsonData_1;
+                try {
+                    jsonData_1 = errorResponse.json();
+                }
+                catch (e) {
+                    throw new Error("Network Error");
+                }
+                var messages = Object.getOwnPropertyNames(jsonData_1)
+                    .map(function (p) { return jsonData_1[p]; });
+                throw new error_handler_service_1.ValidationError(messages);
+            }
+            throw new Error("Network Error");
         });
     };
     return Repository;

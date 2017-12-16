@@ -13,11 +13,29 @@ var core_1 = require("@angular/core");
 var repository_1 = require("./models/repository");
 var product_model_1 = require("./models/product.model");
 var supplier_model_1 = require("./models/supplier.model");
+var error_handler_service_1 = require("./error-handler.service");
 var AppComponent = (function () {
-    function AppComponent(repo) {
+    function AppComponent(repo, errorHandler) {
+        var _this = this;
         this.repo = repo;
         this.title = 'Angular & ASP.NET Core MVC';
+        errorHandler.errors.subscribe(function (error) {
+            if (!_this.lastError) {
+                _this.lastError = [];
+            }
+            error.forEach(function (e) { return _this.lastError.push(e); });
+        });
     }
+    Object.defineProperty(AppComponent.prototype, "error", {
+        get: function () {
+            return this.lastError;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    AppComponent.prototype.clearError = function () {
+        this.lastError = null;
+    };
     Object.defineProperty(AppComponent.prototype, "product", {
         get: function () {
             return this.repo.product;
@@ -70,7 +88,7 @@ AppComponent = __decorate([
         templateUrl: './app.component.html',
         styleUrls: ['./app.component.css']
     }),
-    __metadata("design:paramtypes", [repository_1.Repository])
+    __metadata("design:paramtypes", [repository_1.Repository, error_handler_service_1.ErrorHandlerService])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

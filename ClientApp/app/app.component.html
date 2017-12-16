@@ -1,14 +1,7 @@
-<!--<div class="container">
-  <div class="row">
-    <div class="col">
-      <category-filter></category-filter>
-      <product-table></product-table>
-    </div>
-    <div class="col">
-      <product-detail></product-detail>
-    </div>
-  </div>
-</div>-->
 <div class="container">
+  <div class="bg-danger text-white text-center p-2 m-2" *ngIf="error != null">
+    <h6 *ngFor="let e of error">{{e}}</h6>
+    <button class="btn btn-warning" (click)="clearError()">Ok</button>
+  </div>
   <router-outlet></router-outlet>
 </div>
