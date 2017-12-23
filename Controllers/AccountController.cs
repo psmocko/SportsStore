@@ -17,19 +17,23 @@ namespace SportsStore.Controllers
     }
 
     [HttpGet]
-    public IActionResult Login(string returnUrl) {
+    public IActionResult Login(string returnUrl)
+    {
       ViewBag.returnUrl = returnUrl;
       return View();
     }
 
     [HttpPost]
-    public async Task<IActionResult> Login(LoginViewModel creds, string returnUrl) {
-      if (ModelState.IsValid) {
+    public async Task<IActionResult> Login(LoginViewModel creds, string returnUrl)
+    {
+      if (ModelState.IsValid)
+      {
         if (await DoLogin(creds))
         {
           return Redirect(returnUrl ?? "/");
         }
-        else {
+        else
+        {
           ModelState.AddModelError("", "Invalid username or password");
         }
       }
@@ -37,14 +41,34 @@ namespace SportsStore.Controllers
     }
 
     [HttpPost]
-    public async Task<IActionResult> Logout(string redirectUrl) {
+    public async Task<IActionResult> Logout(string redirectUrl)
+    {
       await _signInManager.SignOutAsync();
       return Redirect(redirectUrl ?? "/");
     }
 
-    private async Task<bool> DoLogin(LoginViewModel creds) {
+    [HttpPost("/api/account/login")]
+    public async Task<IActionResult> Login([FromBody] LoginViewModel creds)
+    {
+      if (ModelState.IsValid && await DoLogin(creds))
+      {
+        return Ok();
+      }
+      return BadRequest();
+    }
+
+    [HttpPost("/api/account/logout")]
+    public async Task<IActionResult> Logout()
+    {
+      await _signInManager.SignOutAsync();
+      return Ok();
+    }
+
+    private async Task<bool> DoLogin(LoginViewModel creds)
+    {
       var user = await _userManager.FindByNameAsync(creds.Name);
-      if (user != null) {
+      if (user != null)
+      {
         await _signInManager.SignOutAsync();
         var result = await _signInManager.PasswordSignInAsync(user, creds.Password, false, false);
         return result.Succeeded;

@@ -181,6 +181,14 @@ export class Repository {
     return this.sendRequest(RequestMethod.Get, `/api/session/${dataType}`);
   }
 
+  login(name: string, password: string): Observable<Response> {
+    return this.http.post("/api/account/login", { name: name, password: password });
+  }
+
+  logout() {
+    this.http.post("/api/account/logout", null).subscribe(response => { });
+  }
+
   private sendRequest(verb: RequestMethod, url: string, data?: any): Observable<any> {
     return this.http.request(new Request({
       method: verb,

@@ -8,6 +8,8 @@ namespace SportsStore.Controllers
 {
   [Produces("application/json")]
   [Route("api/session")]
+  //[ValidateAntiForgeryToken]
+  //[AutoValidateAntiforgeryToken]
   public class SessionValuesController : Controller
   {
     [HttpGet("cart")]

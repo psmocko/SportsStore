@@ -11,9 +11,14 @@ var admin_component_1 = require("./admin/admin.component");
 var overview_component_1 = require("./admin/overview.component");
 var productAdmin_component_1 = require("./admin/productAdmin.component");
 var order_admin_component_1 = require("./admin/order-admin.component");
+var authentication_guard_1 = require("./auth/authentication.guard");
+var authentication_component_1 = require("./auth/authentication.component");
 var routes = [
+    { path: 'login', component: authentication_component_1.AuthenticationComponent },
+    { path: 'admin', redirectTo: '/admin/overview', pathMatch: 'full' },
     {
-        path: 'admin', component: admin_component_1.AdminComponent, children: [
+        path: 'admin', component: admin_component_1.AdminComponent, canActivateChild: [authentication_guard_1.AuthenticationGuard],
+        children: [
             { path: 'products', component: productAdmin_component_1.ProductAdminComponent },
             { path: 'orders', component: order_admin_component_1.OrderAdminComponent },
             { path: 'overview', component: overview_component_1.OverviewComponent },

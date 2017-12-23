@@ -175,6 +175,12 @@ var Repository = /** @class */ (function () {
     Repository.prototype.getSessionData = function (dataType) {
         return this.sendRequest(http_1.RequestMethod.Get, "/api/session/" + dataType);
     };
+    Repository.prototype.login = function (name, password) {
+        return this.http.post("/api/account/login", { name: name, password: password });
+    };
+    Repository.prototype.logout = function () {
+        this.http.post("/api/account/logout", null).subscribe(function (response) { });
+    };
     Repository.prototype.sendRequest = function (verb, url, data) {
         return this.http.request(new http_1.Request({
             method: verb,

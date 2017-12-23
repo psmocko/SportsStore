@@ -13,6 +13,8 @@ namespace SportsStore.Controllers
   [Produces("application/json")]
   [Route("api/orders")]
   [Authorize(Roles = "Administrator")]
+  //[ValidateAntiForgeryToken]
+  //[AutoValidateAntiforgeryToken]
   public class OrderValuesController : Controller
   {
     private DataContext _context;

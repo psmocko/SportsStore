@@ -20,8 +20,8 @@ namespace SportsStore
         try
         {
 
-          SeedData.SeedDatabase(services.GetRequiredService<DataContext>());
-          // IdentitySeedData.SeedDatabase(services.GetRequiredService<IdentityDataContext>(), services);
+           //SeedData.SeedDatabase(services.GetRequiredService<DataContext>());
+           //IdentitySeedData.SeedDatabase(services.GetRequiredService<IdentityDataContext>(), services).Wait();
         }
         catch (Exception ex)
         {

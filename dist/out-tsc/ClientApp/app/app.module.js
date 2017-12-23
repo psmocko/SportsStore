@@ -15,6 +15,8 @@ var admin_module_1 = require("./admin/admin.module");
 var app_routing_1 = require("./app.routing");
 var store_module_1 = require("./store/store.module");
 var error_handler_service_1 = require("./error-handler.service");
+var auth_module_1 = require("./auth/auth.module");
+var authentication_service_1 = require("./auth/authentication.service");
 var app_component_1 = require("./app.component");
 var eHandler = new error_handler_service_1.ErrorHandlerService();
 function handler() {
@@ -36,11 +38,13 @@ var AppModule = /** @class */ (function () {
                 model_module_1.ModelModule,
                 app_routing_1.RoutingConfig,
                 store_module_1.StoreModule,
-                admin_module_1.AdminModule
+                admin_module_1.AdminModule,
+                auth_module_1.AuthModule
             ],
             providers: [
                 { provide: error_handler_service_1.ErrorHandlerService, useFactory: handler },
-                { provide: core_1.ErrorHandler, useFactory: handler }
+                { provide: core_1.ErrorHandler, useFactory: handler },
+                authentication_service_1.AuthenticationService
             ],
             bootstrap: [app_component_1.AppComponent]
         })

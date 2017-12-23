@@ -8,6 +8,8 @@ import { RoutingConfig } from './app.routing';
 import { StoreModule } from './store/store.module';
 import { ProductSelectionComponent } from './store/productSelection.component';
 import { ErrorHandlerService } from './error-handler.service';
+import { AuthModule } from './auth/auth.module';
+import { AuthenticationService } from './auth/authentication.service';
 
 import { AppComponent } from './app.component';
 
@@ -28,11 +30,13 @@ export function handler() {
     ModelModule,
     RoutingConfig,
     StoreModule,
-    AdminModule
+    AdminModule,
+    AuthModule
   ],
   providers: [
     { provide: ErrorHandlerService, useFactory: handler },
-    { provide: ErrorHandler, useFactory: handler }
+    { provide: ErrorHandler, useFactory: handler },
+    AuthenticationService
   ],
   bootstrap: [AppComponent]
 })
